@@ -1,3 +1,5 @@
+import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -18,5 +20,15 @@ public class Java8Streams {
         System.out.println(addTen.andThen(addTenString).apply(5));
         Function<Integer, Integer> addTwo = x->x+2;
         System.out.println(addTen.compose(addTwo).apply(12));
+        System.out.println(Function.identity().apply(10));
+
+        // Consumer accepts, but return nothing
+        Consumer<Integer> consumer = x-> System.out.println(x+" consumer");
+        consumer.accept(10);
+        System.out.println("===========================");
+        Consumer<List<Integer>> printAll = x-> x.forEach(System.out::print);
+        printAll.accept(List.of(10,20));
+        System.out.println("===========================");
+
     }
 }
