@@ -1,0 +1,22 @@
+import java.util.function.Function;
+import java.util.function.Predicate;
+
+public class Java8Streams {
+    public static void main(String[] args) {
+
+        // Predicate - (Functional interface) return Boolena value
+        Predicate<Integer> isEven = x->x%2==0;
+        System.out.println(isEven.test(10));
+        System.out.println(isEven.negate().test(10));
+        Predicate<Integer> isGreaterThanAndEqual10 = x->x>=10;
+        System.out.println(isGreaterThanAndEqual10.and(isEven).test(9));
+
+
+        // Function -> works and return;
+        Function<Integer, Integer> addTen = x->x+10;
+        Function<Integer, String> addTenString = x->x+" ten";
+        System.out.println(addTen.andThen(addTenString).apply(5));
+        Function<Integer, Integer> addTwo = x->x+2;
+        System.out.println(addTen.compose(addTwo).apply(12));
+    }
+}
